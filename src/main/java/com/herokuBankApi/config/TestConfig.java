@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.herokuBankApi.entities.Bank;
 import com.herokuBankApi.entities.Person;
+import com.herokuBankApi.entities.Transaction;
 import com.herokuBankApi.entities.Users;
 import com.herokuBankApi.repositories.BankRepository;
 import com.herokuBankApi.repositories.PersonRepository;
+import com.herokuBankApi.repositories.TransactionRepository;
 import com.herokuBankApi.repositories.UserRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	private TransactionRepository transactionRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -47,5 +52,10 @@ public class TestConfig implements CommandLineRunner{
 		Person p1 = new Person(1L, "Pesso Número Um", "Rua das Avenidas", "51000000", "Pernambuco", "Brazil", sdf.parse("01/01/2000"), "112233", "5581911112222", "pessoa1@email.com", "pessoa1", "abcd1234", Instant.now(), Instant.now());
 		Person p2 = new Person(2L, "Pesso Número Dois", "Avenida das Ruas", "51000000", "Pernambuco", "Brazil", sdf.parse("31/12/1990"), "445566", "5581922223333", "pessoa2@email.com", "pessoa2", "efgh5678", Instant.now(), Instant.now());
 		personRepository.saveAll(Arrays.asList(p1, p2));
+		
+		Transaction t1 = new Transaction(1L, "trans-in", Instant.now(), "success");
+		Transaction t2 = new Transaction(2L, "trans-out", Instant.now(), "success");
+		Transaction t3 = new Transaction(3L, "trans-in", Instant.now(), "success");
+		transactionRepository.saveAll(Arrays.asList(t1, t2, t3));
 	}
 }
