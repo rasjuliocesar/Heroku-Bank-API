@@ -16,14 +16,14 @@ import com.herokuBankApi.entities.Users;
 import com.herokuBankApi.repositories.BankRepository;
 import com.herokuBankApi.repositories.PersonRepository;
 import com.herokuBankApi.repositories.TransactionRepository;
-import com.herokuBankApi.repositories.UserRepository;
+import com.herokuBankApi.repositories.UsersRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
 
 	@Autowired
-	private UserRepository userRepository;
+	private UsersRepository usersRepository;
 	
 	@Autowired
 	private BankRepository bankRepository;
@@ -41,7 +41,7 @@ public class TestConfig implements CommandLineRunner{
 		
 		Users u1 = new Users(1L, "username1", "password1", Instant.now(), Instant.now());
 		Users u2 = new Users(2L, "username2", "password2", Instant.now(), Instant.now());
-		userRepository.saveAll(Arrays.asList(u1, u2));
+		usersRepository.saveAll(Arrays.asList(u1, u2));
 		
 		Bank b1 = new Bank(1L, "X", "1234", 1000.00, Instant.now(), Instant.now());
 		Bank b2 = new Bank(2L, "Standard", "5678", 2000.00, Instant.now(), Instant.now());
